@@ -42,28 +42,28 @@ function browserSyncReload(done) {
   done();
 }
 
-// Clean vendor
+// Clean external
 function clean() {
-  return del(["./vendor/"]);
+  return del(["./external/"]);
 }
 
-// Bring third party dependencies from node_modules into vendor directory
+// Bring third party dependencies from node_modules into external directory
 function modules() {
   // Bootstrap
   var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
-    .pipe(gulp.dest('./vendor/bootstrap'));
+    .pipe(gulp.dest('./external/bootstrap'));
   // Font Awesome
   var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
-    .pipe(gulp.dest('./vendor'));
+    .pipe(gulp.dest('./external'));
   // jQuery Easing
   var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
-    .pipe(gulp.dest('./vendor/jquery-easing'));
+    .pipe(gulp.dest('./external/jquery-easing'));
   // jQuery
   var jquery = gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
-    .pipe(gulp.dest('./vendor/jquery'));
+    .pipe(gulp.dest('./external/jquery'));
   return merge(bootstrap, fontAwesome, jquery, jqueryEasing);
 }
 
